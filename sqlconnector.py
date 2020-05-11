@@ -8,7 +8,7 @@ class Connector:
         
         host = "localhost"
         user = "root"
-        password = "Desmoines68136$"
+        password = "WH3N23AT"
         conn = mysql.connector.connect(host=host, database=database, user=user,
                 password=password)
         return conn
@@ -22,3 +22,6 @@ class Connector:
             print("Connection either already closed or never connected.")
 
         return
+
+
+    WH3N23AT
