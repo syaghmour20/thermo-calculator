@@ -17,7 +17,7 @@ class DataUpdater:
 
         cursor.execute(query)
         speciesList = cursor.fetchall()
-
+        
         # Loop through list of species to see if name already exists
         for s in speciesList:
             if s[0] == species:

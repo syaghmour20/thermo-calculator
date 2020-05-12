@@ -16,6 +16,10 @@ class DataLoader:
         cursor.execute(query, (species,))
         data = cursor.fetchone()
         
+        # Close connections 
+        cursor.close()
+        conn.close()
+
         if data is None: 
             print("No data for " + species + " in database.")
             return None
@@ -33,6 +37,10 @@ class DataLoader:
         query = "select molarMass, omega, Tc, Pc, Zc, Vc, Tn from PureSpeciesProperties where species = %s"
         cursor.execute(query, (species,))
         data = cursor.fetchone()
+        
+        # Close connections
+        cursor.close()
+        conn.close()
 
         if data is None:
             print("No data for " + species + " in database.")
