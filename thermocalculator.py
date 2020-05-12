@@ -114,9 +114,9 @@ class ThermoCalculator:
         """Calculates the real enthalpy of a species from condition one to condition two."""
         
         # Utilize the equation dH = dHig + Hr2 - Hr1
-        dHig = calc_enthalpy_ideal(species, t1, t2)
-        Hr1 = calc_enthalpy_residual(species, t1, p1)
-        Hr2 = calc_enthalpy_residual(species, t2, p2)
+        dHig = ThermoCalculator.calc_enthalpy_ideal(species, t1, t2)
+        Hr1 = ThermoCalculator.calc_enthalpy_residual(species, t1, p1)
+        Hr2 = ThermoCalculator.calc_enthalpy_residual(species, t2, p2)
 
         return dHig + Hr2 - Hr1
 
@@ -125,9 +125,9 @@ class ThermoCalculator:
         """Calculates the real entropy of a species from condition one to condition two."""
 
         # Utilize the equation dS = dSig + Sr2 - Sr1
-        dSig = calc_entropy_ideal(species, t1, t2, p1, p2)
-        Sr1 = calc_entropy_residual(species, t1, p1)
-        Sr2 = calc_entropy_residual(species, t2, p2)
+        dSig = ThermoCalculator.calc_entropy_ideal(species, t1, t2, p1, p2)
+        Sr1 = ThermoCalculator.calc_entropy_residual(species, t1, p1)
+        Sr2 = ThermoCalculator.calc_entropy_residual(species, t2, p2)
 
         return dSig + Sr2 - Sr1
 
