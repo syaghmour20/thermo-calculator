@@ -16,20 +16,27 @@ class Connector:
              conn = mysql.connector.connect(host=host, database=database, user=user,
                     password=password)
         except mysql.connector.Error as e:
-            print("Error code:", e.errno)
-            print("SQLSTATE value: " + e.sqlstate)
-            print("Error message: " + e.msg)
-            print("Error: ",  e)
+            Connector.handle_exception(e)
 
         return conn
 
     def close_connection(conn):
         """Closes a previously established connection to a MySQL database."""
         
-        if (conn.is_connected()):
+        try:
             conn.close()
-        else:
-            print("Connection either already closed or never connected.")
+        except mysql.connector.Error as e:
+            Connector.handle_exception(e)
+
+        return
+
+    def handle_exception(e):
+        """Handles excpetions arising from mysql.connector.Error"""
+
+        print("Error code:", e.errno)
+        print("SQLSTATE value: " + e.sqlstate)
+        print("Error message: " + e.msg)
+        print("Error: ", e)
 
         return
 

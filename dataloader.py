@@ -1,5 +1,6 @@
 import mysql.connector
 from sqlconnector import Connector
+import sys
 
 class DataLoader:
     """This class is used to load data from the database to the program."""
@@ -13,12 +14,18 @@ class DataLoader:
         
         # Execute query to select data from database
         query = "select a, b, c, d from HeatCapacityValues where species = %s"
-        cursor.execute(query, (species,))
-        data = cursor.fetchone()
         
-        # Close connections 
-        cursor.close()
-        conn.close()
+        data = None
+        try:
+            cursor.execute(query, (species,))
+            data = cursor.fetchone()
+        except:
+            Connector.handle_exception(e)
+            sys.exit()
+
+        # Close connections
+        Connector.close_connection(cursor)
+        Connector.close_connection(conn)
 
         if data is None: 
             print("No data for " + species + " in database.")
@@ -35,12 +42,18 @@ class DataLoader:
 
         # Execute query to select data from database
         query = "select molarMass, omega, Tc, Pc, Zc, Vc, Tn from PureSpeciesProperties where species = %s"
-        cursor.execute(query, (species,))
-        data = cursor.fetchone()
         
+        data = None
+        try:
+            cursor.execute(query, (species,))
+            data = cursor.fetchone()
+        except:
+            Connector.handle_exception(e)
+            sys.exit()
+
         # Close connections
-        cursor.close()
-        conn.close()
+        Connector.close_connection(cursor)
+        Connector.close_connection(conn)
 
         if data is None:
             print("No data for " + species + " in database.")
