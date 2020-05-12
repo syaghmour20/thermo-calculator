@@ -24,4 +24,3 @@ class Connector:
         return
 
 
-    WH3N23AT
