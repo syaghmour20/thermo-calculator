@@ -117,6 +117,10 @@ class ThermoCalculator:
         dHig = ThermoCalculator.calc_enthalpy_ideal(species, t1, t2)
         Hr1 = ThermoCalculator.calc_enthalpy_residual(species, t1, p1)
         Hr2 = ThermoCalculator.calc_enthalpy_residual(species, t2, p2)
+        
+        if dHig is None or Hr1 is None or Hr2 is None:
+            print("Error: unable to calculate enthalpy of the given species.")
+            return None
 
         return dHig + Hr2 - Hr1
 
@@ -128,6 +132,10 @@ class ThermoCalculator:
         dSig = ThermoCalculator.calc_entropy_ideal(species, t1, t2, p1, p2)
         Sr1 = ThermoCalculator.calc_entropy_residual(species, t1, p1)
         Sr2 = ThermoCalculator.calc_entropy_residual(species, t2, p2)
+        
+        if dSig is None or Sr1 is None or Sr2 is None:
+            print("Error: unable to calculate entropy of the given species.")
+            return None
 
         return dSig + Sr2 - Sr1
 
