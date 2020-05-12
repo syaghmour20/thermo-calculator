@@ -9,8 +9,18 @@ class Connector:
         host = "localhost"
         user = "root"
         password = "WH3N23AT"
-        conn = mysql.connector.connect(host=host, database=database, user=user,
-                password=password)
+        
+        # Catch exceptions for any errors that may arise from connecting to database
+        conn = None
+        try:
+             conn = mysql.connector.connect(host=host, database=database, user=user,
+                    password=password)
+        except mysql.connector.Error as e:
+            print("Error code:", e.errno)
+            print("SQLSTATE value: " + e.sqlstate)
+            print("Error message: " + e.msg)
+            print("Error: ",  e)
+
         return conn
 
     def close_connection(conn):
